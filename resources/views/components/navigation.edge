@@ -1,0 +1,22 @@
+<header class="bg-white border-b mb-4">
+    <nav class="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <div class="flex flex-1">
+            <a href="{{ route('home') }}" class="-m-1.5 p-1.5">
+                <span class="sr-only">Your Company</span>
+                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600" alt="">
+            </a>
+        </div>
+
+        @if(auth.user)
+        <div class="flex flex-1 justify-end items-center gap-4">
+            <form method="POST" action="{{ route('logout') }}">
+                {{ csrfField() }}
+                <input type="submit" value="Logout"
+                    class="text-sm font-semibold leading-6 text-gray-900 cursor-pointer" />
+            </form>
+            <a href="{{ route('dashboard.create') }}"
+                class="text-sm py-2 px-4 bg-indigo-600 text-white rounded hover:bg-indigo-700">Add New To Do</a>
+        </div>
+        @end
+    </nav>
+</header>

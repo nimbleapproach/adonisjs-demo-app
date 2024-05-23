@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-white">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta property="og:site_name" content="{{ appName }}" />
+
+    {{--
+    TODO:
+
+    - Add favicons
+    - Add manifest.json and related properties
+    - Add OG meta
+    - Add twitter meta
+    - Anything else we might come across
+    --}}
+
+    @if($slots.meta)
+    {{{ await $slots.meta() }}}
+    @end
+
+    <title>{{ title ? title + ' - ' : '' }} {{ appName }}</title>
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+</head>
+
+<body class="h-full">
+    <main>
+        @unless(hideMenu)
+        @navigation()
+        @end
+        @end
+
+        {{{ await $slots.main() }}}
+    </main>
+</body>
+
+</html>
