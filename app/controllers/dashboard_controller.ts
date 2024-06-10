@@ -10,8 +10,7 @@ export default class DashboardController {
       response.redirect().toRoute('login.index')
     }
 
-    const qs = request.qs()
-    const completed = qs.completed
+    const completed = request.input('completed', undefined)
 
     const page = request.input('page', 1)
     const limit = 10
@@ -54,7 +53,7 @@ export default class DashboardController {
       }
     })
 
-    return await view.render('pages/dashboard/index', { analytics, items })
+    return await view.render('pages/dashboard/index', { analytics, items, completed })
   }
 
   async create({ view }: HttpContext) {
